@@ -19,7 +19,7 @@ RUN rm /usr/bin/python3 -f \
         && rm /usr/bin/python -f \
         && ln -s /usr/bin/python3.8 /usr/bin/python3 \
         && ln -s /usr/bin/python3.8 /usr/bin/python \
-        && echo "alias pip 'pip3'" >> /etc/profile
+        && echo "alias pip='pip3'" >> /etc/profile
 
 #支持root/123456远程登录 注意：ssh是服务，当cmd启动命令被修改时ssh失效
 RUN apt-get install -y python3-pip sudo openssh-server nano lsof vim
