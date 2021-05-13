@@ -21,7 +21,7 @@ RUN rm /usr/bin/python3 -f \
         && ln -s /usr/bin/python3.8 /usr/bin/python
 
 #支持root/123456远程登录 注意：ssh是服务，当cmd启动命令被修改时ssh失效
-RUN apt-get install -y python3-pip sudo openssh-server nano lsof
+RUN apt-get install -y python3-pip sudo openssh-server nano lsof vim
 RUN mkdir /var/run/sshd \
     && echo 'root:123456' | chpasswd \
     && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
