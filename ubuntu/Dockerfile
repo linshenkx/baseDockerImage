@@ -14,7 +14,7 @@ RUN apt install -y tzdata \
     && dpkg-reconfigure --frontend noninteractive tzdata
 
 #支持root/123456远程登录 注意：ssh是服务，当cmd启动命令被修改时ssh失效
-RUN apt-get install -y python3-pip python-is-python3 sudo openssh-server nano lsof vim
+RUN apt-get install -y python3-pip python-is-python3 pkg-config python3-dev sudo openssh-server nano lsof vim
 RUN mkdir /var/run/sshd \
     && echo 'root:123456' | chpasswd \
     && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
