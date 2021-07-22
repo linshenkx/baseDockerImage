@@ -18,7 +18,7 @@ RUN apt-get install -y python3-pip python-is-python3 sudo openssh-server nano ls
 RUN mkdir /var/run/sshd \
     && echo 'root:123456' | chpasswd \
     && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-COPY pip.conf ~/.pip/pip.conf
+COPY pip.conf /root/.pip/pip.conf
 
 RUN echo "alias pip='pip3'" >> /etc/profile
 
