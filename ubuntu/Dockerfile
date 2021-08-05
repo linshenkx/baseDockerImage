@@ -14,7 +14,7 @@ RUN apt install -y tzdata \
     && dpkg-reconfigure --frontend noninteractive tzdata
 
 #支持root/123456远程登录 注意：ssh是服务，当cmd启动命令被修改时ssh失效
-RUN apt-get install -y python3-pip python-is-python3 pkg-config python3-dev curl sudo openssh-server nano lsof vim
+RUN apt-get install -y libcairo2-dev python3-pip python-is-python3 pkg-config python3-dev curl sudo openssh-server nano lsof vim
 RUN mkdir /var/run/sshd \
     && echo 'root:123456' | chpasswd \
     && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -25,4 +25,4 @@ RUN echo "alias pip='pip3'" >> /etc/profile
 EXPOSE 22
 CMD ["/usr/sbin/sshd","-D"]
 
-# docker build -t linshen/ubuntu:20.04 .
+# docker build -t linshen/ubuntu .
