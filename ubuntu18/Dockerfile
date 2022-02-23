@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 #更新镜像源
 RUN cp -a /etc/apt/sources.list /etc/apt/sources.list.bak \
@@ -16,7 +16,7 @@ RUN apt install -y tzdata \
     && dpkg-reconfigure --frontend noninteractive tzdata
 
 #支持root/123456远程登录 注意：ssh是服务，当cmd启动命令被修改时ssh失效
-RUN apt-get install -y libcairo2-dev python3-pip python-is-python3 pkg-config python3-dev curl sudo openssh-server nano lsof vim
+RUN apt-get install -y libcairo2-dev python3-pip pkg-config python3-dev curl sudo openssh-server nano lsof vim
 RUN apt-get install -y
 
 RUN mkdir /var/run/sshd \
@@ -29,5 +29,4 @@ RUN echo "alias pip='pip3'" >> /etc/profile
 EXPOSE 22
 CMD ["/usr/sbin/sshd","-D"]
 
-# docker build -t linshen/ubuntu .  && docker push linshen/ubuntu
-# docker build -t linshen/ubuntu:20.04 .  && docker push linshen/ubuntu:20.04
+# docker build -t linshen/ubuntu18 .
