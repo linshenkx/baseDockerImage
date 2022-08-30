@@ -21,6 +21,7 @@ RUN apt-get install -y
 
 RUN mkdir /var/run/sshd \
     && echo 'root:123456' | chpasswd \
+    && sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config \
     && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 COPY pip.conf /root/.pip/pip.conf
 
@@ -29,5 +30,3 @@ RUN echo "alias pip='pip3'" >> /etc/profile
 EXPOSE 22
 CMD ["/usr/sbin/sshd","-D"]
 
-# docker build -t linshen/ubuntu .  && docker push linshen/ubuntu
-# docker build -t linshen/ubuntu:20.04 .  && docker push linshen/ubuntu:20.04
